@@ -950,9 +950,9 @@ const MODELS = [
    cfg:{L:4.8, track:1.6, railZ:.44, axles:1, boat:'lancha', boatLen:4.9}},
   {id:'b19', name:'BM 19', type:'lancha', price:13900, cap:'1.300 kg', fits:'Lanchas até 19 pés', axle:'Rodado simples', rim:'Aro 14', len:'6,8 m', badge:'Destaque', maxFt:19,
    cfg:{L:5.6, track:1.75, railZ:.48, axles:1, boat:'lancha', boatLen:5.8}},
-  {id:'b23', name:'BM 23 Pro', type:'lancha', price:21900, cap:'2.200 kg', fits:'Lanchas até 23 pés', axle:'Rodado duplo', rim:'Aro 14', len:'8,0 m', badge:'Premium', maxFt:23, incl:['dual','led'],
+  {id:'b23', name:'BM 23 Pro', type:'lancha', price:21900, cap:'2.200 kg', fits:'Lanchas até 23 pés', axle:'Rodado duplo', rim:'Aro 14', len:'8,0 m', badge:'Premium', maxFt:23, incl:['led'],
    cfg:{L:6.7, track:1.75, railZ:.5, axles:1, boat:'lancha', boatLen:7.0, dual:true}},
-  {id:'b26', name:'BM 26 Tandem', type:'lancha', price:32900, cap:'3.200 kg', fits:'Lanchas até 26 pés', axle:'Duplo tandem com freio', rim:'Aro 15', len:'9,0 m', maxFt:26, incl:['dual','brake','electric','led'],
+  {id:'b26', name:'BM 26 Tandem', type:'lancha', price:32900, cap:'3.200 kg', fits:'Lanchas até 26 pés', axle:'Tandem duplo com freio', rim:'Aro 15', len:'9,0 m', maxFt:26, incl:['brake','electric','led'],
    cfg:{L:7.6, track:1.8, railZ:.52, axles:2, boat:'lancha', boatLen:7.9, dual:true, brake:true, winch:'electric'}}
 ];
 
@@ -962,12 +962,14 @@ const OPTIONS = [
     {v:'mel', l:'Verniz natural (mel)', p:0, sw:'linear-gradient(135deg,#d08440,#8a4a1a)'},
     {v:'tabaco', l:'Verniz tabaco', p:390, sw:'linear-gradient(135deg,#6e4220,#2e180a)'}]},
   {id:'support', label:'Carpete dos berços', type:'radio', choices:[
-    {v:'azul', l:'Azul marinho', p:0, sw:'#3d4b6a'},{v:'cinza', l:'Cinza grafite', p:0, sw:'#5a5f66'},{v:'preto', l:'Preto', p:0, sw:'#1c1e21'}]},
+    {v:'cinza', l:'Cinza grafite', p:0, sw:'#3a3c40'},{v:'azul', l:'Azul acinzentado', p:0, sw:'#4a5568'},{v:'preto', l:'Preto', p:0, sw:'#1c1e21'}]},
+  {id:'rodado', label:'Rodado', type:'radio', choices:[
+    {v:'simples', l:'Simples · 2 rodas', p:0},{v:'duplo', l:'Duplo lado a lado · 4 rodas', p:1490},
+    {v:'tandem', l:'Tandem · roda na frente e atrás', p:2490},{v:'tandem4', l:'Tandem duplo · 8 rodas', p:4990}]},
   {id:'rims', label:'Rodas', type:'radio', choices:[
     {v:'steel', l:'Aço preto', p:0},{v:'alloy', l:'Liga leve', p:1290}]},
   {id:'winch', label:'Guincho', type:'radio', choices:[
     {v:'none', l:'Sem guincho', p:0},{v:'manual', l:'Manual com coluna', p:690},{v:'electric', l:'Elétrico 12V com coluna', p:2490}]},
-  {id:'dual', label:'Rodado duplo (4 pneus)', type:'toggle', p:1490},
   {id:'brake', label:'Freio inercial', type:'toggle', p:2190},
   {id:'spare', label:'Estepe com suporte', type:'toggle', p:590},
   {id:'led', label:'Iluminação LED submersível', type:'toggle', p:390},
@@ -1013,7 +1015,7 @@ function makeMats(){
   const CPT=h=>{const t=carpetTex(h);return S({map:t,bumpMap:t,bumpScale:.02,color:0xffffff,roughness:1,metalness:0});};
   return {
     wood:{mogno:WD('#4f1d0b','#260b03','#6b2a10'),mel:WD('#7a4a22','#3e220b','#94602f'),tabaco:WD('#33200f','#170c05','#45291a')},
-    carpetC:{azul:CPT('#1f2b45'),cinza:CPT('#3c4046'),preto:CPT('#151619')},
+    carpetC:{azul:CPT('#3a4558'),cinza:CPT('#2c2e31'),preto:CPT('#141516')},
     blackSteel:P({color:0x0e0f11,roughness:.35,metalness:.5,clearcoat:.6}),brass:S({color:0xd1a94e,metalness:1,roughness:.28}),orange:S({color:0xc9480c,roughness:.5}),plate:P({color:0x0b0b0c,roughness:.3,clearcoat:1}),
     frame:{galv:S({color:0xb7bfc7,metalness:1,roughness:.33}),black:S({color:0x141517,metalness:.45,roughness:.55}),graphite:S({color:0x454b53,metalness:.85,roughness:.3})},
     steel:S({color:0x9ea5ac,metalness:1,roughness:.42}),
@@ -1218,7 +1220,8 @@ function buildTrailer(c,M){
   const V=(x,y,z)=>new THREE.Vector3(x,y,z);
   const W=M.wood[c.color]||M.wood.mogno, CP=M.carpetC[c.carpet]||M.carpetC.azul, ST=M.blackSteel;
   const L=c.L, track=c.track, rz=c.railZ, fy=.64, BH=.24, BW=.12, rx0=-L/2, rx1=L/2-.3, tipX=L/2+1.5;
-  const bolt=(x,y,z,par,axis)=>{const b=mesh(new THREE.CylinderGeometry(.017,.017,.02,10),M.brass,x,y,z,par);if(axis==='z')b.rotation.x=Math.PI/2;else if(axis==='x')b.rotation.z=Math.PI/2;return b;};
+  const BOLT=c.color==='mel'||c.color==='tabaco'?M.chrome:M.brass;
+  const bolt=(x,y,z,par,axis)=>{const b=mesh(new THREE.CylinderGeometry(.018,.018,.02,10),BOLT,x,y,z,par);if(axis==='z')b.rotation.x=Math.PI/2;else if(axis==='x')b.rotation.z=Math.PI/2;return b;};
   const plate4=(x,y,z,par,axis,sz)=>{const d=sz||.045;[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>{if(axis==='z')bolt(x+a*d,y+b*d,z,par,'z');else bolt(x,y+b*d,z+a*d,par,'x');});};
   // ---- chassi em madeira maciça (vigas grossas)
   const frame=grp('frame',V(0,0,0));
@@ -1227,14 +1230,16 @@ function buildTrailer(c,M){
   const nC=Math.max(3,Math.round(L/1.4));
   for(let k=0;k<nC;k++){const x=rx0+.08+k*(rx1-rx0-.16)/(nC-1);box(.14,.2,rz*2-BW,W,x,fy-.01,0,frame);}
   // cabeçalho: viga central longa + duas vigas em V
-  const meetX=rx1+1.05;
-  box(tipX-(rx1-.2),BH+.02,.16,W,(tipX+rx1-.2)/2,fy,0,frame);
-  beam(rx1,-rz,meetX,-.1,fy,BH,BW,W,frame);beam(rx1,rz,meetX,.1,fy,BH,BW,W,frame);
-  box(.5,.1,.3,W,meetX-.05,fy-.17,0,frame);
-  box(.18,.12,.008,M.plate,meetX+.45,fy+.02,.084,frame);
-  [.15,.75,1.05].forEach(d=>plate4(meetX+d,fy,.084,frame,'z',.05));
+  const meetX=tipX-.75;
+  // duas vigas que convergem na ponta + bloco do engate
+  beam(rx1-.1,-rz,meetX+.05,-.075,fy,BH,BW,W,frame);beam(rx1-.1,rz,meetX+.05,.075,fy,BH,BW,W,frame);
+  box(.8,BH+.04,.26,W,tipX-.4,fy,0,frame);
+  box(.55,.08,.22,W,meetX-.25,fy-BH/2-.06,0,frame);
+  const vAng=Math.atan2(rz-.075,meetX+.05-rx1+.1);
+  const pl=box(.2,.14,.008,M.plate,(rx1+meetX)/2,fy+.02,((rz+.075)/2)+BW/2/Math.cos(vAng)+.004,frame);pl.rotation.y=-vAng;
+  [[-.62,.06],[-.62,-.06],[-.35,.06],[-.35,-.06],[-.1,0]].forEach(([d,y])=>{bolt(tipX+d,fy+y,.135,frame,'z');bolt(tipX+d,fy+y,-.135,frame,'z');});
   // ---- eixo, molas e rodas
-  const ax=-L*.12, axX=c.axles===2?[ax-.42,ax+.42]:[ax];
+  const ax=-L*.12, axX=c.axles===2?[ax-.4,ax+.4]:[ax];
   const axle=grp('axle',V(0,-.3,0)), wl=grp('wheelsL',V(0,-.05,-.95)), wr=grp('wheelsR',V(0,-.05,.95));
   const wz=Math.max(track/2,rz+.38), dz=.29;
   axX.forEach(x=>{
@@ -1275,13 +1280,17 @@ function buildTrailer(c,M){
       const n=new THREE.Vector3(0,Math.cos(th),Math.sin(th));
       const cp=box(AD+.05,.08,la+.02,CP,x+n.x*(AH/2+.035),cy+n.y*(AH/2+.035),czz+n.z*(AH/2+.035),sup);cp.rotation.x=th;
       const ez=cz+s*(hw-.04),ey=c0+tt*hw;
-      box(AD+.01,.26,.1,W,x,ey+.03,ez,sup);
-      const pz=cz+s*(isJet?hw*.55:rz), ptop=c0+tt*Math.abs(pz-cz)-AH/2;
-      box(.12,Math.max(.05,ptop-(fy+BH/2)),.12,W,x,(ptop+fy+BH/2)/2,pz,sup);
+      box(AD+.01,.3,.1,W,x,ey+.05,ez,sup);
+      box(AD+.05,.3,.035,CP,x,ey+.05,ez+s*.066,sup);
+      box(AD+.05,.045,.135,CP,x,ey+.215,ez+s*.008,sup);
+      const pz=cz+s*(isJet?hw*.55:rz+BW/2+.03), ptop=c0+tt*Math.abs(pz-cz)+AH/2-.02;
+      const ph2=ptop-(fy-BH/2);
+      box(.16,ph2,.05,W,x,(fy-BH/2)+ph2/2,pz,sup);
+      [fy-.05,fy+.06,ptop-.1].forEach(y=>bolt(x,y,pz+s*.027,sup,'z'));
       plate4(x+AD/2+.006,cy,czz,sup,'x',.04);
     });
-    box(AD+.04,.28,.3,W,x,c0-.05,cz,sup);
-    plate4(x+AD/2+.026,c0-.05,cz,sup,'x',.06);
+    box(AD+.04,.28,.34,W,x,c0-.05,cz,sup);
+    [-.09,.09].forEach(dz=>{box(.03,.3,.12,W,x+AD/2+.035,c0-.04,cz+dz,sup);plate4(x+AD/2+.052,c0-.04,cz+dz,sup,'x',.03);});
   }));
   // ---- barco
   const boatG=grp('boat',V(0,1.7,0));
@@ -1423,11 +1432,15 @@ class Stage{
 
 /* ============================ estado global ============================ */
 const state={model:MODELS[3],opt:{},showBoat:false};
-function defaultsFor(m){const c=m.cfg,inc=m.incl||[];return {color:'mogno',rims:'steel',support:'azul',winch:c.winch||'none',dual:!!c.dual,brake:!!c.brake,spare:false,led:inc.includes('led'),doc:false};}
+const RODADO_TXT={simples:'Rodado simples',duplo:'Rodado duplo',tandem:'Tandem (frente e trás)',tandem4:'Tandem duplo'};
+const rodadoOf=c=>c.axles===2?(c.dual?'tandem4':'tandem'):(c.dual?'duplo':'simples');
+const RODADO_P=v=>{const o=OPTIONS.find(x=>x.id==='rodado');return (o.choices.find(c=>c.v===v)||{p:0}).p;};
+function defaultsFor(m){const c=m.cfg,inc=m.incl||[];return {color:'mogno',rims:'steel',support:'cinza',winch:c.winch||'none',rodado:m.rodado&&m.rodado!=='simples'&&m._prod?m.rodado:rodadoOf(c),brake:!!c.brake,spare:false,led:inc.includes('led'),doc:false};}
 function optPrice(m,o){const inc=m.incl||[];let t=0;OPTIONS.forEach(op=>{
+  if(op.id==='rodado'){t+=Math.max(0,RODADO_P(o.rodado)-RODADO_P(rodadoOf(m.cfg)));return;}
   if(op.type==='radio'){const ch=op.choices.find(x=>x.v===o[op.id]);if(ch&&!inc.includes(ch.v))t+=ch.p;}
   else if(o[op.id]&&!inc.includes(op.id))t+=op.p;});return t;}
-function cfgFor(m,o,showBoat){return Object.assign({},m.cfg,{color:o.color,rims:o.rims,carpet:o.support,winch:o.winch,dual:o.dual,brake:o.brake,spare:o.spare,led:o.led,showBoat});}
+function cfgFor(m,o,showBoat){const rd=o.rodado||rodadoOf(m.cfg);return Object.assign({},m.cfg,{color:o.color,rims:o.rims,carpet:o.support,winch:o.winch,dual:rd==='duplo'||rd==='tandem4',axles:(rd==='tandem'||rd==='tandem4')?2:1,brake:o.brake,spare:o.spare,led:o.led,showBoat});}
 function inst(v){return CONFIG.parcelasCartao+'x de '+BRL(v/CONFIG.parcelasCartao)+' sem juros';}
 
 /* ============================ preloader ============================ */
@@ -1493,20 +1506,20 @@ const instM=m=>pParc(m)+'x de '+BRL(pCartao(m)/pParc(m))+(pCartao(m)>m.price?'':
 const heroM=()=>MODELS.find(m=>m.id==='b23')||MODELS.find(m=>m.badge)||MODELS[0];
 function specsOf(m,all){const s=[['Capacidade',m.cap],['Peso',m.peso],['Medidas',m.medidas||m.len],['Rodagem',m.axle],['Rodas',m.rim],['Modelo',m.modelo]].filter(x=>x[1]);return (all?s:s.slice(0,4)).map(([k,v])=>`<div>${k}<b>${esc(v)}</b></div>`).join('');}
 function cfgFrom(p){
-  const ft=+p.maxFt||19,dual=p.rodado==='duplo';
-  if(p.type==='jet')return {L:3.5,track:1.45,railZ:.34,axles:1,boat:'jet',boatLen:3.2,dual};
-  if(p.type==='jet2')return {L:3.8,track:2.2,railZ:.85,axles:1,boat:'jet2',boatLen:3.2,dual};
-  const bl=ft*.3048;return {L:+(bl*.97).toFixed(2),track:+Math.min(1.95,1.35+ft*.02).toFixed(2),railZ:+Math.min(.52,.28+ft*.009).toFixed(2),axles:ft>=25?2:1,boat:'lancha',boatLen:+bl.toFixed(2),dual,brake:!!p.freio};
+  const ft=+p.maxFt||19,dual=p.rodado==='duplo'||p.rodado==='tandem4',ax=(p.rodado==='tandem'||p.rodado==='tandem4')?2:1;
+  if(p.type==='jet')return {L:3.5,track:1.45,railZ:.34,axles:ax,boat:'jet',boatLen:3.2,dual};
+  if(p.type==='jet2')return {L:3.8,track:2.2,railZ:.85,axles:ax,boat:'jet2',boatLen:3.2,dual};
+  const bl=ft*.3048;return {L:+(bl*.97).toFixed(2),track:+Math.min(1.95,1.35+ft*.02).toFixed(2),railZ:+Math.min(.52,.28+ft*.009).toFixed(2),axles:ax,boat:'lancha',boatLen:+bl.toFixed(2),dual,brake:!!p.freio};
 }
 function toModel(p){
   return {id:p.id,name:p.name||'Sem nome',modelo:p.modelo||'',type:p.type||'lancha',price:+p.price||0,cap:p.cap||'',fits:p.fits||'',peso:p.peso||'',medidas:p.medidas||'',dim:p.dim||{},
-    axle:p.rodado==='duplo'?'Rodado duplo':'Rodado simples',rodado:p.rodado||'simples',rim:p.aro||'',badge:p.badge||'',maxFt:+p.maxFt||19,freio:!!p.freio,
-    incl:[].concat(p.rodado==='duplo'?['dual']:[],p.freio?['brake']:[]),cfg:cfgFrom(p),precos:p.precos||{},custos:p.custos||null,ativo:p.ativo!==false,ordem:+p.ordem||0,_prod:true};
+    axle:RODADO_TXT[p.rodado]||'Rodado simples',rodado:p.rodado||'simples',rim:p.aro||'',badge:p.badge||'',maxFt:+p.maxFt||19,freio:!!p.freio,
+    incl:[].concat(p.freio?['brake']:[]),cfg:cfgFrom(p),precos:p.precos||{},custos:p.custos||null,ativo:p.ativo!==false,ordem:+p.ordem||0,_prod:true};
 }
 function fromModel(m,i){
   if(m._raw)return JSON.parse(JSON.stringify(m._raw));
   return {id:m.id,name:m.name,modelo:m.modelo||'',type:m.type,price:m.price,cap:m.cap,fits:m.fits,peso:m.peso||'',medidas:m.medidas||m.len||'',dim:m.dim||{},
-    maxFt:m.maxFt,rodado:m.cfg&&m.cfg.dual?'duplo':'simples',aro:m.rim,badge:m.badge||'',freio:!!(m.cfg&&m.cfg.brake),precos:m.precos||{},custos:m.custos||null,ativo:m.ativo!==false,ordem:m.ordem!=null?m.ordem:i};
+    maxFt:m.maxFt,rodado:m.cfg?rodadoOf(m.cfg):'simples',aro:m.rim,badge:m.badge||'',freio:!!(m.cfg&&m.cfg.brake),precos:m.precos||{},custos:m.custos||null,ativo:m.ativo!==false,ordem:m.ordem!=null?m.ordem:i};
 }
 function applyProdutos(list){
   PRODS=list||[];
@@ -1720,7 +1733,7 @@ function buildOpts(){
   OPTIONS.forEach(op=>{
     const incl=v=>(m.incl||[]).includes(v);
     if(op.type==='radio'){
-      h+=`<div class="og glass"><h4>${op.label}</h4>${op.choices.map(c=>`<div class="ch ${o[op.id]===c.v?'on':''}" data-o="${op.id}" data-v="${c.v}"><span class="l">${c.sw?`<span class="sw" style="background:${c.sw}"></span>`:'<span class="dot"></span>'}${c.l}</span><span class="pp">${c.p&&!incl(c.v)?'+ '+BRL0(c.p):(incl(c.v)&&c.p?'Incluso':'Padrão')}</span></div>`).join('')}</div>`;
+      h+=`<div class="og glass"><h4>${op.label}</h4>${op.choices.map(c=>`<div class="ch ${o[op.id]===c.v?'on':''}" data-o="${op.id}" data-v="${c.v}"><span class="l">${c.sw?`<span class="sw" style="background:${c.sw}"></span>`:'<span class="dot"></span>'}${c.l}</span><span class="pp">${op.id==='rodado'?(c.v===rodadoOf(m.cfg)?'Padrão':(RODADO_P(c.v)>RODADO_P(rodadoOf(m.cfg))?'+ '+BRL0(RODADO_P(c.v)-RODADO_P(rodadoOf(m.cfg))):'—')):(c.p&&!incl(c.v)?'+ '+BRL0(c.p):(incl(c.v)&&c.p?'Incluso':'Padrão'))}</span></div>`).join('')}</div>`;
     }
   });
   h+=`<div class="og glass"><h4>Opcionais</h4>${OPTIONS.filter(x=>x.type==='toggle').map(op=>{const inc=(m.incl||[]).includes(op.id);return `<div class="ch ${o[op.id]?'on':''}" data-t="${op.id}"><span class="l"><span class="tg"></span>${op.label}</span><span class="pp">${inc?'Incluso':'+ '+BRL0(op.p)}</span></div>`;}).join('')}</div>`;
@@ -1734,7 +1747,7 @@ function buildOpts(){
   $$('#opts [data-o]').forEach(b=>b.onclick=()=>{state.opt[b.dataset.o]=b.dataset.v;refreshCfg();});
   $$('#opts [data-t]').forEach(b=>b.onclick=()=>{const id=b.dataset.t;if((state.model.incl||[]).includes(id))return toast('Já incluso neste modelo');state.opt[id]=!state.opt[id];refreshCfg();});
   $('#cShare').onclick=async()=>{const o=state.opt,bits=['brake','spare','led','doc','dual'].map(k=>o[k]?1:0).join('');
-    const h='c-'+state.model.id+'-'+o.color+'-'+o.rims+'-'+o.support+'-'+o.winch+'-'+bits;const url=location.href.split('#')[0]+'#'+h;
+    const h='c-'+state.model.id+'-'+o.color+'-'+o.rims+'-'+o.support+'-'+o.winch+'-'+bits+'-'+(o.rodado||'simples');const url=location.href.split('#')[0]+'#'+h;
     try{history.replaceState(null,'','#'+h);}catch(e){}
     try{await navigator.clipboard.writeText(url);toast('Link copiado. Mande para quem você quiser!');}catch(e){toast('Copie o endereço da barra: '+url);}};
   $('#cView').onclick=()=>openViewer(state.model,Object.assign({},state.opt));
@@ -1853,7 +1866,7 @@ if(CONFIG.leadPopupSeg>0){setTimeout(popLead,CONFIG.leadPopupSeg*1000);document.
 /* ============================ boot ============================ */
 (function(){const h=location.hash.slice(1).split('-');if(h[0]!=='c')return;const m=MODELS.find(x=>x.id===h[1]);if(!m)return;
   state.model=m;state.opt=Object.assign(defaultsFor(m),{color:h[2]||'mogno',rims:h[3]||'steel',support:h[4]||'azul',winch:h[5]||'none'});
-  const b=(h[6]||'00000');['brake','spare','led','doc','dual'].forEach((k,i)=>state.opt[k]=b[i]==='1');
+  const b=(h[6]||'00000');['brake','spare','led','doc','dual'].forEach((k,i)=>state.opt[k]=b[i]==='1');if(h[7])state.opt.rodado=h[7];
   addEventListener('load',()=>setTimeout(()=>$('#configurador').scrollIntoView(),900));})();
 buildOpts();reco();
 /* =====================================================================
@@ -2365,7 +2378,7 @@ function openProd(m,dup){
     <div class="fld"><label>Largura (m)</label><input name="dL" type="number" step="0.01" min="0" value="${v(p.dim.l)}"></div>
     <div class="fld"><label>Altura (m)</label><input name="dA" type="number" step="0.01" min="0" value="${v(p.dim.a)}"></div>
     <div class="fld"><label>Medidas (texto livre)</label><input name="medidas" value="${v(p.medidas)}" placeholder="Preenchido pelas medidas acima"></div>
-    <div class="fld"><label>Rodado</label><select name="rodado"><option value="simples" ${p.rodado!=='duplo'?'selected':''}>Simples (2 pneus)</option><option value="duplo" ${p.rodado==='duplo'?'selected':''}>Duplo (4 pneus)</option></select></div>
+    <div class="fld"><label>Rodado</label><select name="rodado">${[['simples','Simples · 2 rodas'],['duplo','Duplo lado a lado · 4 rodas'],['tandem','Tandem · frente e trás · 4 rodas'],['tandem4','Tandem duplo · 8 rodas']].map(([k,l])=>`<option value="${k}" ${p.rodado===k?'selected':''}>${l}</option>`).join('')}</select></div>
     <div class="fld"><label>Aro</label><input name="aro" value="${v(p.aro)}" placeholder="Ex.: Aro 14"></div>
     <div class="fld"><label>Selo no card</label><input name="badge" value="${v(p.badge)}" placeholder="Ex.: Mais vendida"></div>
     <div class="fld"><label>Freio inercial incluso</label><select name="freio"><option value="0">Não</option><option value="1" ${p.freio?'selected':''}>Sim</option></select></div>
