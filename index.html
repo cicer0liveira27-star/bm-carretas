@@ -566,6 +566,59 @@ i.r{background:#3ddc97}i.d{background:#ff6b6b}
   .cats div{grid-template-columns:110px 1fr 86px}
 }
 
+/* produtos (admin) */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.pcard{background:#0e1115;border:1px solid #1c2128;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.pcard.off{opacity:.55}
+.pth{position:relative;aspect-ratio:16/10;background:#0a0c0f}
+.pth img{width:100%;height:100%;object-fit:cover}
+.pill{position:absolute;top:8px;left:8px;font-size:.68rem;font-weight:600;padding:.25em .6em;border-radius:6px;background:rgba(0,0,0,.7);border:1px solid #2a3038}
+.pcnt{position:absolute;bottom:8px;right:8px;font-size:.68rem;padding:.2em .55em;border-radius:6px;background:rgba(0,0,0,.7)}
+.pbd{padding:12px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pn b{font-size:.98rem}.pn small{margin-left:8px;color:#7d8791;font-size:.75rem}
+.pmeta{display:flex;flex-wrap:wrap;gap:5px}.pmeta span{font-size:.72rem;padding:.2em .55em;border-radius:6px;background:#151a20;color:#b9c1c9}
+.pprc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.pprc div{background:#0a0c0f;border:1px solid #1c2128;border-radius:8px;padding:7px 8px}
+.pprc small{display:block;font-size:.66rem;color:#7d8791}.pprc b{font-size:.8rem;font-weight:600}
+.pmg{display:flex;justify-content:space-between;gap:8px;font-size:.75rem;color:#b9c1c9;flex-wrap:wrap}
+.pac{display:flex;gap:6px;margin-top:auto;flex-wrap:wrap}
+.lbox.wide{width:min(900px,100%)}
+.ptabs{display:flex;gap:4px;padding:12px 16px 0;border-bottom:1px solid #1c2128;overflow-x:auto}
+.ptabs button{background:none;border:0;border-bottom:2px solid transparent;color:#9aa3ad;padding:8px 12px 10px;font-size:.86rem;cursor:pointer;font-family:inherit;white-space:nowrap}
+.ptabs button.on{color:#fff;border-bottom-color:#fff}
+.pprev{font-size:.82rem;color:#b9c1c9;background:#0a0c0f;border:1px dashed #2a3038;border-radius:8px;padding:10px 12px}
+.pprev:empty{display:none}
+.calc{padding:16px}
+.calc h4{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#7d8791;margin-bottom:8px;font-weight:600}
+.ctbl{border:1px solid #1c2128;border-radius:10px;overflow:hidden}
+.ch2,.cr{display:grid;grid-template-columns:minmax(0,1.6fr) 70px 120px 110px 36px;gap:8px;align-items:center;padding:8px 10px}
+.ch2{background:#0c0f12;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:#7d8791}
+.cr{border-top:1px solid #161a20}
+.cr input{width:100%;padding:.5em .6em;border-radius:6px;border:1px solid #2a3038;background:#0a0c0f;color:#fff;font-size:16px;font-family:inherit;min-width:0}
+.cs{text-align:right;font-size:.82rem}
+.csug{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cres{margin-top:16px}
+.crk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.crk div{background:#0a0c0f;border:1px solid #1c2128;border-radius:10px;padding:12px}
+.crk div.hl{border-color:#3ddc9766;background:#3ddc970d}
+.crk span{display:block;font-size:.72rem;color:#7d8791}.crk b{display:block;font-size:1.1rem;margin-top:4px}.crk small{font-size:.72rem;color:#7d8791}
+.cbt{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.cbt .b[disabled]{opacity:.4;pointer-events:none}
+.cnow{display:grid;gap:4px;margin-top:12px;font-size:.84rem;color:#b9c1c9;background:#0a0c0f;border:1px solid #1c2128;border-radius:10px;padding:12px}
+@media (max-width:700px){.crk{grid-template-columns:repeat(2,minmax(0,1fr))}.ch2{display:none}.cr{grid-template-columns:1fr 60px 1fr 34px;grid-template-areas:"n n n x" "q v s s"}
+ .cr input[data-k=nome]{grid-area:n}.cr input[data-k=qtd]{grid-area:q}.cr input[data-k=valor]{grid-area:v}.cr .cs{grid-area:s}.cr .ib{grid-area:x}.pgrid{grid-template-columns:minmax(0,1fr)}}
+/* engenharia sem rolagem presa */
+#anatomia{height:auto!important;padding:80px 0 30px}
+#anatomia .stick{position:static!important;height:auto!important;display:block!important;pointer-events:auto!important;padding:0!important}
+#anatomia .steps{height:auto!important;display:grid;gap:10px;margin:0!important;width:auto!important}
+#anatomia .step{position:relative!important;inset:auto;opacity:.5;transform:none!important;cursor:pointer;padding:16px 20px}
+#anatomia .step.on{opacity:1;border-color:rgba(255,255,255,.35)}
+#anatomia .step .n{font-size:1.6rem;display:inline-block;margin-right:10px;vertical-align:middle}
+#anatomia .step h3{display:inline-block;vertical-align:middle;margin:0;font-size:1.15rem}
+#anatomia .step p{margin-top:8px;font-size:.9rem}
+#anatomia .step ul{display:none}#anatomia .step.on ul{display:grid}
+@media (min-width:901px){.an-img{position:sticky;top:100px}}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s,transform 1s cubic-bezier(.2,1,.3,1)}
 .rv.in{opacity:1;transform:none}
@@ -640,7 +693,7 @@ i.r{background:#3ddc97}i.d{background:#ff6b6b}
 </section>
 
 <!-- FÁBRICA -->
-<section id="fabrica" class="pad" style="padding-bottom:20px">
+<section id="fabrica" class="pad" style="padding-top:50px;padding-bottom:20px">
   <div class="wrap">
     <div class="eyebrow rv">Feito à mão</div>
     <h2 class="title rv"><span class="metal">Direto da nossa fábrica.</span><br>Carretas de verdade.</h2>
@@ -1375,7 +1428,7 @@ function setImg(img,url){if(!img||!url)return;img.onload=()=>img.classList.add('
 const anat=$('#anatomia'),steps=$$('.step'),progI=$$('.prog i'),anImgs=[0,1,2,3].map(i=>$('#an'+i));
 let curStep=0;
 function setStep(si){if(si===curStep)return;steps[curStep].classList.remove('on');anImgs[curStep].classList.remove('on');steps[si].classList.add('on');anImgs[si].classList.add('on');curStep=si;progI.forEach((p,i)=>p.classList.toggle('on',i<=si));}
-const NARROW=()=>innerWidth<=900;
+const NARROW=()=>true;
 addEventListener('scroll',()=>{if(NARROW())return;const vh=innerHeight,a=clamp((scrollY-anat.offsetTop)/(anat.offsetHeight-vh),0,1);setStep(Math.min(3,Math.floor(a*4.0001)));},{passive:true});
 steps.forEach((s,i)=>s.addEventListener('click',()=>{if(NARROW()){setStep(i);anAuto=false;}}));
 let anAuto=true,anVis=false;
@@ -1389,7 +1442,8 @@ let GALERIA=DEFAULT_FOTOS.galeria.slice();
 MODELS.forEach(m=>m.fotos=(DEFAULT_FOTOS[m.id]||[]).slice());
 function applyPhotos(map){
   map=map||{};
-  MODELS.forEach(m=>{if(Array.isArray(map[m.id]))m.fotos=map[m.id];m._img=(m.fotos&&m.fotos[0])||m._render||m._img;m._g={};});
+  Object.keys(map).forEach(k=>{if(k!=='galeria'&&Array.isArray(map[k]))PHOTO_MAP[k]=map[k];});
+  (typeof ALLP!=='undefined'?ALLP:MODELS).forEach(m=>{if(Array.isArray(map[m.id]))m.fotos=map[m.id];m._img=(m.fotos&&m.fotos[0])||m._render||m._img;m._g={};});
   if(Array.isArray(map.galeria))GALERIA=map.galeria;
   renderCatalog();renderGaleria();
 }
@@ -1402,15 +1456,60 @@ function resizeImg(file,max,q){return new Promise((ok,no)=>{const r=new FileRead
   const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);
   c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',q));};im.src=r.result;};r.readAsDataURL(file);});}
 
+/* ============================ produtos (cadastro pelo admin) ============================ */
+const DEFAULT_MODELS=MODELS.slice();
+let PRODS=[];               // produtos salvos no banco (formato bruto)
+let ALLP=MODELS.slice();    // todos os produtos, inclusive ocultos (para o admin)
+const PHOTO_MAP={};
+const pPix=m=>m.precos&&+m.precos.pix>0?+m.precos.pix:m.price*(1-CONFIG.pixDesconto);
+const pCartao=m=>m.precos&&+m.precos.cartao>0?+m.precos.cartao:m.price;
+const pParc=m=>m.precos&&+m.precos.parcelas>0?+m.precos.parcelas:CONFIG.parcelasCartao;
+const instM=m=>pParc(m)+'x de '+BRL(pCartao(m)/pParc(m))+(pCartao(m)>m.price?'':' sem juros');
+const heroM=()=>MODELS.find(m=>m.id==='b23')||MODELS.find(m=>m.badge)||MODELS[0];
+function specsOf(m,all){const s=[['Capacidade',m.cap],['Peso',m.peso],['Medidas',m.medidas||m.len],['Rodagem',m.axle],['Rodas',m.rim],['Modelo',m.modelo]].filter(x=>x[1]);return (all?s:s.slice(0,4)).map(([k,v])=>`<div>${k}<b>${esc(v)}</b></div>`).join('');}
+function cfgFrom(p){
+  const ft=+p.maxFt||19,dual=p.rodado==='duplo';
+  if(p.type==='jet')return {L:3.5,track:1.45,railZ:.34,axles:1,boat:'jet',boatLen:3.2,dual};
+  if(p.type==='jet2')return {L:3.8,track:2.2,railZ:.85,axles:1,boat:'jet2',boatLen:3.2,dual};
+  const bl=ft*.3048;return {L:+(bl*.97).toFixed(2),track:+Math.min(1.95,1.35+ft*.02).toFixed(2),railZ:+Math.min(.52,.28+ft*.009).toFixed(2),axles:ft>=25?2:1,boat:'lancha',boatLen:+bl.toFixed(2),dual,brake:!!p.freio};
+}
+function toModel(p){
+  return {id:p.id,name:p.name||'Sem nome',modelo:p.modelo||'',type:p.type||'lancha',price:+p.price||0,cap:p.cap||'',fits:p.fits||'',peso:p.peso||'',medidas:p.medidas||'',dim:p.dim||{},
+    axle:p.rodado==='duplo'?'Rodado duplo':'Rodado simples',rodado:p.rodado||'simples',rim:p.aro||'',badge:p.badge||'',maxFt:+p.maxFt||19,freio:!!p.freio,
+    incl:[].concat(p.rodado==='duplo'?['dual']:[],p.freio?['brake']:[]),cfg:cfgFrom(p),precos:p.precos||{},custos:p.custos||null,ativo:p.ativo!==false,ordem:+p.ordem||0,_prod:true};
+}
+function fromModel(m,i){
+  if(m._raw)return JSON.parse(JSON.stringify(m._raw));
+  return {id:m.id,name:m.name,modelo:m.modelo||'',type:m.type,price:m.price,cap:m.cap,fits:m.fits,peso:m.peso||'',medidas:m.medidas||m.len||'',dim:m.dim||{},
+    maxFt:m.maxFt,rodado:m.cfg&&m.cfg.dual?'duplo':'simples',aro:m.rim,badge:m.badge||'',freio:!!(m.cfg&&m.cfg.brake),precos:m.precos||{},custos:m.custos||null,ativo:m.ativo!==false,ordem:m.ordem!=null?m.ordem:i};
+}
+function applyProdutos(list){
+  PRODS=list||[];
+  const prev={};ALLP.concat(MODELS).forEach(m=>prev[m.id]=m);
+  const map=new Map();DEFAULT_MODELS.forEach((m,i)=>map.set(m.id,Object.assign(m,{ordem:m.ordem!=null?m.ordem:i,ativo:m.ativo!==false})));
+  PRODS.forEach(p=>{if(p.removido){map.delete(p.id);return;}const m=toModel(p);m._raw=p;const o=prev[p.id];if(o){m._render=o._render;m._g={};}map.set(p.id,m);});
+  ALLP=[...map.values()].sort((a,b)=>(a.ordem||0)-(b.ordem||0));
+  ALLP.forEach(m=>{m.fotos=PHOTO_MAP[m.id]||m.fotos||(DEFAULT_FOTOS[m.id]||[]).slice();m._img=(m.fotos&&m.fotos[0])||m._render||m._img;});
+  MODELS.length=0;ALLP.filter(m=>m.ativo!==false).forEach(m=>MODELS.push(m));
+  if(!MODELS.length)return;
+  if(!MODELS.includes(state.model)){const k=MODELS.find(x=>x.id===state.model.id);state.model=k||MODELS[0];if(!k)state.opt=defaultsFor(state.model);}
+  renderCatalog();buildOpts();fin();reco();renderMissing();
+}
+async function renderMissing(){
+  if(!HAS3D)return;
+  for(const m of MODELS){if(m._render)continue;try{m._render=await shoot(cfgFor(m,Object.assign(defaultsFor(m),{led:true}),true),ANG[0],1000,625);}catch(e){}
+    if(!(m.fotos&&m.fotos[0])){m._img=m._render;setImg($('#img-'+m.id),m._img);}}
+}
+
 /* ============================ catálogo ============================ */
 function cardHTML(m){
-  const pix=m.price*(1-CONFIG.pixDesconto);
+  const pix=pPix(m);
   return `<article class="card glass rv" id="m-${m.id}">
    <div class="ph" data-lens data-det="${m.id}"><img alt="${m.name} — carreta náutica" id="img-${m.id}"><span class="ld"></span>${m.badge?`<span class="badge">${m.badge}</span>`:''}
    <button class="tbtn b360" data-360="${m.id}"><b>360°</b> Ver em 3D</button></div>
-   <div class="bd"><h3>${m.name}</h3><div class="fit">${m.fits}</div>
-   <div class="specs"><div>Capacidade<b>${m.cap}</b></div><div>Comprimento<b>${m.len}</b></div><div>Rodagem<b>${m.axle}</b></div><div>Rodas<b>${m.rim}</b></div></div>
-   <div class="price"><div class="p">${BRL0(m.price)} <small>à vista</small></div><div class="s">ou ${inst(m.price)}<br>Pix: <b>${BRL(pix)}</b></div></div>
+   <div class="bd"><h3>${esc(m.name)}${m.modelo?` <small style="font-size:.7rem;color:var(--mute);font-stretch:100%">${esc(m.modelo)}</small>`:''}</h3><div class="fit">${esc(m.fits)}</div>
+   <div class="specs">${specsOf(m)}</div>
+   <div class="price"><div class="p">${BRL0(m.price)} <small>à vista</small></div><div class="s">ou ${instM(m)}<br>Pix: <b>${BRL(pix)}</b></div></div>
    <div class="act"><button class="btn btn-gl" data-det="${m.id}">Detalhes</button><button class="btn btn-pri" data-quote="${m.id}">Orçamento</button></div></div></article>`;
 }
 function placeholderSVG(m){
@@ -1419,14 +1518,14 @@ function placeholderSVG(m){
 }
 function renderCatalog(){
 $('#grid').innerHTML=MODELS.map(cardHTML).join('');MODELS.forEach(m=>{if(m._img)setImg($('#img-'+m.id),m._img);});$$('#grid .rv').forEach(e=>e.classList.add('in'));
-$('#cmp').innerHTML='<tr><th>Modelo</th><th>Para</th><th>Capacidade</th><th>Rodagem</th><th>Rodas</th><th>Preço</th><th>Pix</th></tr>'+MODELS.map(m=>`<tr><td>${m.name}</td><td>${m.fits}</td><td>${m.cap}</td><td>${m.axle}</td><td>${m.rim}</td><td><b>${BRL0(m.price)}</b></td><td style="color:var(--ok)">${BRL(m.price*(1-CONFIG.pixDesconto))}</td></tr>`).join('');
-$('#heroFrom').innerHTML=BRL0(MODELS[4].price)+'<small> à vista</small>';$('#heroInst').textContent='ou '+inst(MODELS[4].price);
-if($('#fModel')){const v=$('#fModel').value;$('#fModel').innerHTML=MODELS.map(m=>`<option value="${m.id}">${m.name} — ${BRL0(m.price)}</option>`).join('');$('#fModel').value=v||'b19';}
+$('#cmp').innerHTML='<tr><th>Modelo</th><th>Para</th><th>Capacidade</th><th>Peso</th><th>Medidas</th><th>Rodagem</th><th>À vista</th><th>Pix</th><th>Cartão</th></tr>'+MODELS.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.fits)}</td><td>${esc(m.cap||'—')}</td><td>${esc(m.peso||'—')}</td><td>${esc(m.medidas||m.len||'—')}</td><td>${esc(m.axle)}</td><td><b>${BRL0(m.price)}</b></td><td style="color:var(--ok)">${BRL(pPix(m))}</td><td>${instM(m)}</td></tr>`).join('');
+{const hm=heroM();$('#heroFrom').innerHTML=BRL0(hm.price)+'<small> à vista</small>';$('#heroInst').textContent='ou '+instM(hm);}
+if($('#fModel')){const v=$('#fModel').value;$('#fModel').innerHTML=MODELS.map(m=>`<option value="${m.id}">${m.name} — ${BRL0(m.price)}</option>`).join('');$('#fModel').value=v||'b19';if(!$('#fModel').value)$('#fModel').selectedIndex=0;}
 if($('#qModel')){const v=$('#qModel').value;$('#qModel').innerHTML=MODELS.map(m=>`<option value="${m.id}">${m.name} — ${BRL0(m.price)}</option>`).join('')+'<option value="">Ainda não sei</option>';if(v!==undefined)$('#qModel').value=v;}
 }
-$('#heroFrom').innerHTML=BRL0(MODELS[4].price)+'<small> à vista</small>';$('#heroInst').textContent='ou '+inst(MODELS[4].price);
+{const hm=heroM();$('#heroFrom').innerHTML=BRL0(hm.price)+'<small> à vista</small>';$('#heroInst').textContent='ou '+instM(hm);}
 
-const HERO_CFG=()=>{const m=MODELS[3];return cfgFor(m,Object.assign(defaultsFor(m),{led:true,rims:'alloy'}),true);};
+const HERO_CFG=()=>{const m=MODELS.find(x=>x.id==='b19')||MODELS[0];return cfgFor(m,Object.assign(defaultsFor(m),{led:true,rims:'alloy'}),true);};
 async function renderStills(){
   setImg($('#heroImg'),FOTOS_BM[2]);
   preDone();
@@ -1445,10 +1544,10 @@ function noStills(){
 /* ============================ detalhes do modelo ============================ */
 let detModel=null;
 async function openDetail(m){
-  detModel=m;const pix=m.price*(1-CONFIG.pixDesconto);
-  $('#dInfo').innerHTML=`<div class="eyebrow">${m.badge||'Linha 2026'}</div><h3>${m.name}</h3><div class="fit" style="color:var(--mute)">${m.fits}</div>
-   <div class="specs"><div>Capacidade<b>${m.cap}</b></div><div>Comprimento<b>${m.len}</b></div><div>Rodagem<b>${m.axle}</b></div><div>Rodas<b>${m.rim}</b></div></div>
-   <div class="price"><div class="p">${BRL0(m.price)} <small>à vista</small></div><div class="s">ou ${inst(m.price)}<br>Pix: <b>${BRL(pix)}</b></div></div>
+  detModel=m;const pix=pPix(m);
+  $('#dInfo').innerHTML=`<div class="eyebrow">${m.badge||'Linha 2026'}</div><h3>${esc(m.name)}</h3><div class="fit" style="color:var(--mute)">${esc(m.fits)}${m.modelo?" · Modelo "+esc(m.modelo):""}</div>
+   <div class="specs">${specsOf(m,true)}</div>
+   <div class="price"><div class="p">${BRL0(m.price)} <small>à vista</small></div><div class="s">ou ${instM(m)}<br>Pix: <b>${BRL(pix)}</b>${m.precos&&+m.precos.boleto?'<br>Boleto: <b style="color:#fff">'+BRL(+m.precos.boleto)+'</b>':''}${m.precos&&+m.precos.entrada?'<br>Entrada a partir de '+m.precos.entrada+'%':''}${m.precos&&m.precos.obs?'<br>'+esc(m.precos.obs):''}</div></div>
    <div class="note" style="margin:0">${IS_TOUCH?'Ligue a lupa e passe o dedo na foto para ampliar.':'Passe o mouse na foto para ampliar.'}</div>
    <div class="btns"><button class="btn btn-acc" data-360="${m.id}"><b>360°</b> Ver em 3D</button>
    <button class="btn btn-gl lensBtn tonly">🔍 Lupa</button>
@@ -1476,7 +1575,7 @@ let recoT='lancha';
 function reco(){
   const r=$('#recoLen'),ft=+r.value;r.style.setProperty('--p',((ft-10)/16*100)+'%');$('#recoFt').textContent=ft+' pés';
   $('#recoLenRow').style.display=recoT==='lancha'?'flex':'none';
-  let m;if(recoT==='jet')m=MODELS[0];else if(recoT==='jet2')m=MODELS[1];else m=MODELS.filter(x=>x.type==='lancha').find(x=>x.maxFt>=ft)||MODELS[5];
+  const byT=t=>MODELS.filter(x=>x.type===t).sort((a,b)=>a.maxFt-b.maxFt);let m;if(recoT!=='lancha')m=byT(recoT)[0]||MODELS[0];else{const ls=byT('lancha');m=ls.find(x=>x.maxFt>=ft)||ls[ls.length-1]||MODELS[0];}
   $('#recoName').textContent=m.name+' · '+BRL0(m.price);$('#recoGo').dataset.m=m.id;
   $$('.card').forEach(c=>c.classList.toggle('hl',c.id==='m-'+m.id));
 }
@@ -1631,7 +1730,7 @@ $('#c360').onclick=()=>openViewer(state.model,Object.assign({},state.opt));
 $('#fModel').innerHTML=MODELS.map(m=>`<option value="${m.id}">${m.name} — ${BRL0(m.price)}</option>`).join('');$('#fModel').value='b19';
 $('#fTx').textContent=(CONFIG.taxaFinanc*100).toFixed(2).replace('.',',')+'%';
 function fin(){
-  const m=MODELS.find(x=>x.id===$('#fModel').value),P=m.price,ent=+$('#fEnt').value,n=+$('#fN').value,i=CONFIG.taxaFinanc;
+  const m=MODELS.find(x=>x.id===$('#fModel').value)||MODELS[0],P=m.price,ent=+$('#fEnt').value,n=+$('#fN').value,i=CONFIG.taxaFinanc;
   $('#fEnt').style.setProperty('--p',(ent/70*100)+'%');$('#fN').style.setProperty('--p',((n-6)/42*100)+'%');
   const E=P*ent/100,pv=P-E,pmt=pv*i/(1-Math.pow(1+i,-n));
   $('#fEntV').textContent=ent+'% · '+BRL0(E);$('#fNV').textContent=n+' meses';
@@ -1831,6 +1930,14 @@ const Backend={
     if(this.mode==='firebase'){const size=arr.join('').length;if(size>950000)throw new Error('Limite de fotos atingido para este item. Remova uma foto.');await this.fb.db.collection('fotos').doc(key).set({imgs:arr});return;}
     const o=LS.get('bm_fotos',{});o[key]=arr;try{localStorage.setItem('bm_fotos',JSON.stringify(o));}catch(e){throw new Error('Memória do aparelho cheia. Remova algumas fotos.');}
   },
+  async produtos(){
+    if(this.mode==='firebase'){try{const r=await this.fb.db.collection('produtos').get();return r.docs.map(d=>Object.assign({id:d.id},d.data()));}catch(e){console.error(e);return [];}}
+    return LS.get('bm_prod',[]);
+  },
+  async saveProduto(p){
+    if(this.mode==='firebase'){await this.fb.db.collection('produtos').doc(p.id).set(p);return;}
+    const a=LS.get('bm_prod',[]);const i=a.findIndex(x=>x.id===p.id);if(i>=0)a[i]=p;else a.push(p);LS.set('bm_prod',a);
+  },
   async lancs(){
     if(this.mode==='firebase'){const r=await this.fb.db.collection('lancamentos').get();return r.docs.map(d=>Object.assign({id:d.id},d.data()));}
     return LS.get('bm_lanc',[]);
@@ -1860,6 +1967,7 @@ service cloud.firestore { match /databases/{db}/documents {
   match /config/{id} { allow read: if true; allow write: if admin(); }
   match /fotos/{id}  { allow read: if true; allow write: if admin(); }
   match /lancamentos/{id} { allow read, write: if admin(); }
+  match /produtos/{id} { allow read: if true; allow write: if admin(); }
 }}
 */
 
@@ -2061,14 +2169,24 @@ function renderView(){
        <tfoot><tr><td colspan="6"><b>Total</b></td><td class="r"><b>${BR(tot)}</b></td><td></td></tr></tfoot></table></div>`:`<div class="pempty">Nenhuma ${tipo} em ${mesNome(P.mes).toLowerCase()}.<br><button class="b pri" style="margin-top:12px" data-new="${tipo}">${ic('plus')}Lançar ${tipo}</button></div>`}</div>`;
   }
   else if(v==='produtos'){
-    act.innerHTML=`<button class="b pri" id="pSave">Salvar preços</button>`;
-    h=`<p class="mut" style="margin-bottom:12px">Preço à vista de cada modelo. Pix, parcelas e simulações do site se atualizam sozinhos.</p>
-     <div class="box"><div class="tw"><table class="tbl"><thead><tr><th>Modelo</th><th>Indicação</th><th>Capacidade</th><th class="r">Preço à vista (R$)</th><th class="r">Pix</th></tr></thead><tbody>
-     ${MODELS.map(m=>`<tr><td><b>${esc(m.name)}</b></td><td>${esc(m.fits)}</td><td>${esc(m.cap)}</td><td class="r"><input class="pin" type="number" min="0" step="10" data-p="${m.id}" value="${m.price}"></td><td class="r mut">${BR(m.price*(1-CONFIG.pixDesconto))}</td></tr>`).join('')}</tbody></table></div></div>`;
+    act.innerHTML=`<button class="b pri" id="pNovo">${ic('plus')}Novo produto</button>`;
+    const L=ALLP,ativos=L.filter(m=>m.ativo!==false);
+    const marg=L.map(m=>calcProd(m.custos,m.price)).filter(c=>c&&c.custo>0);
+    h=`<div class="kp"><div class="kc"><span>Produtos no site</span><b>${ativos.length}</b><small>${L.length-ativos.length} oculto(s)</small></div>
+      <div class="kc"><span>Preço médio à vista</span><b>${BR(ativos.reduce((s,m)=>s+m.price,0)/Math.max(1,ativos.length))}</b></div>
+      <div class="kc"><span>Margem média</span><b>${marg.length?(marg.reduce((s,c)=>s+c.margemAtual,0)/marg.length*100).toFixed(1).replace('.',',')+'%':'—'}</b><small>${marg.length} com custo calculado</small></div>
+      <div class="kc"><span>Sem foto real</span><b>${L.filter(m=>!(m.fotos&&m.fotos.length)).length}</b><small>usam a imagem 3D</small></div></div>
+     <div class="pgrid">${L.map(m=>{const c=calcProd(m.custos,m.price);const th=(m.fotos&&m.fotos[0])||m._render||placeholderSVG(m);
+       return `<div class="pcard ${m.ativo===false?'off':''}"><div class="pth"><img src="${th}" alt="">${m.ativo===false?'<span class="pill">Oculto</span>':m.badge?`<span class="pill">${esc(m.badge)}</span>`:''}<span class="pcnt">${(m.fotos||[]).length} foto(s)</span></div>
+        <div class="pbd"><div class="pn"><b>${esc(m.name)}</b>${m.modelo?`<small>${esc(m.modelo)}</small>`:''}</div>
+        <div class="pmeta">${[m.fits,m.peso,m.medidas||m.len].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('')}</div>
+        <div class="pprc"><div><small>À vista</small><b>${BR(m.price)}</b></div><div><small>Pix</small><b>${BR(pPix(m))}</b></div><div><small>Cartão</small><b>${pParc(m)}x ${BR(pCartao(m)/pParc(m))}</b></div></div>
+        ${c&&c.custo>0?`<div class="pmg"><span>Custo ${BR(c.custo)}</span><span class="${c.lucroAtual>=0?'pos':'neg'}">Lucro ${BR(c.lucroAtual)} · ${(c.margemAtual*100).toFixed(1).replace('.',',')}%</span></div>`:'<div class="pmg mut">Sem custo calculado</div>'}
+        <div class="pac"><button class="b sm" data-pe="${m.id}">${ic('edit')}Editar</button><button class="b sm" data-pd="${m.id}">${ic('copy')}Duplicar</button><button class="b sm" data-ph="${m.id}">${m.ativo===false?'Mostrar':'Ocultar'}</button></div></div></div>`;}).join('')}</div>`;
   }
   else if(v==='fotos'){
-    const keys=[['galeria','Galeria da fábrica']].concat(MODELS.map(m=>[m.id,m.name]));
-    const cur=P.fotoKey==='galeria'?GALERIA:(MODELS.find(m=>m.id===P.fotoKey).fotos||[]);
+    const keys=[['galeria','Galeria da fábrica']].concat(ALLP.map(m=>[m.id,m.name]));
+    const cur=P.fotoKey==='galeria'?GALERIA:((ALLP.find(m=>m.id===P.fotoKey)||{}).fotos||[]);
     act.innerHTML=`<label class="b pri">${ic('plus')}Adicionar fotos<input type="file" accept="image/*" multiple id="fUp" hidden></label>`;
     h=`<div class="flt2"><select id="fKey" class="sel">${keys.map(([k,l])=>`<option value="${k}" ${P.fotoKey===k?'selected':''}>${l}</option>`).join('')}</select><span class="mut">A primeira foto de cada modelo é a capa do card.</span></div>
      <div class="box" style="padding:14px"><div class="fgrid">${cur.map((u,i)=>`<div class="fi"><img src="${u}" alt=""><div class="fa"><button data-fl="${i}" title="Mover">◀</button><button data-fd="${i}" title="Remover">✕</button><button data-fr="${i}" title="Mover">▶</button></div>${i===0&&P.fotoKey!=='galeria'?'<span class="cap">Capa</span>':''}</div>`).join('')||'<div class="pempty" style="grid-column:1/-1">Nenhuma foto aqui ainda.</div>'}</div></div>`;
@@ -2131,9 +2249,14 @@ function wireView(){
     try{await navigator.clipboard.writeText(csv);toast('Planilha copiada. Cole no Excel ou Google Sheets.');}catch(e){toast('Não foi possível copiar');}};
   if($('#pSave'))$('#pSave').onclick=async()=>{const p={};$$('#pc [data-p]').forEach(i=>{const v=Math.round(+i.value);if(v>0)p[i.dataset.p]=v;});
     try{await Backend.savePrices(p);applyPrices(p);toast('Preços salvos');renderView();}catch(e){toast('Sem permissão para salvar');}};
+  if($('#pNovo'))$('#pNovo').onclick=()=>openProd(null);
+  $$('#pc [data-pe]').forEach(b=>b.onclick=()=>openProd(ALLP.find(m=>m.id===b.dataset.pe)));
+  $$('#pc [data-pd]').forEach(b=>b.onclick=()=>openProd(ALLP.find(m=>m.id===b.dataset.pd),true));
+  $$('#pc [data-ph]').forEach(b=>b.onclick=async()=>{const m=ALLP.find(x=>x.id===b.dataset.ph);const o=fromModel(m,ALLP.indexOf(m));o.ativo=m.ativo===false;
+    try{await Backend.saveProduto(o);const i=PRODS.findIndex(x=>x.id===o.id);if(i>=0)PRODS[i]=o;else PRODS.push(o);applyProdutos(PRODS);toast(o.ativo?'Produto visível no site':'Produto oculto do site');renderView();}catch(e){toast('Sem permissão');}});
   // fotos
   if($('#fKey'))$('#fKey').onchange=e=>{P.fotoKey=e.target.value;renderView();};
-  const curArr=()=>P.fotoKey==='galeria'?GALERIA:(MODELS.find(m=>m.id===P.fotoKey).fotos||[]);
+  const curArr=()=>P.fotoKey==='galeria'?GALERIA:((ALLP.find(m=>m.id===P.fotoKey)||{}).fotos||[]);
   const saveF=async arr=>{try{await Backend.savePhotos(P.fotoKey,arr);const map={};map[P.fotoKey]=arr;applyPhotos(map);renderView();toast('Fotos salvas');}catch(e){console.error(e);toast(e.message||'Não foi possível salvar');}};
   if(P.view==='fotos'){
     $$('#pc [data-fd]').forEach(b=>b.onclick=()=>{const a=curArr().slice();a.splice(+b.dataset.fd,1);saveF(a);});
@@ -2155,9 +2278,142 @@ function wireView(){
   if($('#df')){phoneMask($('#df input[name=whats]'));$('#df').onsubmit=async e=>{e.preventDefault();try{await Backend.updateProfile(e.target.nome.value.trim(),e.target.whats.value);toast('Dados salvos');renderShell();renderView();updateAcct();}catch(err){toast('Não foi possível salvar');}};}
 }
 function recFromLead(l){return {tipo:'receita',categoria:'Venda de carreta',descricao:'Venda '+(l.modelo||'carreta')+' · '+(l.nome||''),valor:l.valor||'',pessoa:l.nome,protocolo:l.protocolo,forma:/pix/i.test(l.pag||'')?'Pix':/cart/i.test(l.pag||'')?'Cartão de crédito':'',status:'pendente'};}
-function openText(l){const b=$('#lbox');b.innerHTML=`<div class="lh"><b>Proposta ${esc(l.protocolo)}</b><button class="ib" data-lx>✕</button></div><pre class="ptxt">${esc(l.texto||'')}</pre>
+function openText(l){const b=$('#lbox');b.classList.remove('wide');b.innerHTML=`<div class="lh"><b>Proposta ${esc(l.protocolo)}</b><button class="ib" data-lx>✕</button></div><pre class="ptxt">${esc(l.texto||'')}</pre>
   <div class="lf"><a class="b" target="_blank" rel="noopener" href="${waLead(l)}">${ic('wa')}WhatsApp</a><button class="b pri" data-lx>Fechar</button></div>`;
   $('#lmod').classList.add('on');$$('#lbox [data-lx]').forEach(x=>x.onclick=()=>$('#lmod').classList.remove('on'));}
+/* ============================ editor de produto + calculadora ============================ */
+const MAT_SUG=['Madeira','Ferragens e parafusos','Pneus e rodas','Eixo e molas','Carpete','Verniz','Engate e roda-guia','Iluminação','Placa BM'];
+function calcProd(c,preco,pix,cartao){
+  if(!c)return null;
+  const mat=(c.itens||[]).reduce((s,i)=>s+(+i.qtd||0)*(+i.valor||0),0);
+  const custo=mat+(+c.mao||0)+(+c.frete||0)+(+c.outros||0);
+  const imp=(+c.imp||0)/100,marg=(+c.margem||0)/100,tx=(+c.taxa||0)/100;
+  const den=1-imp-marg,denC=1-imp-tx-marg;
+  const sug=den>0?custo/den:0,sugC=denC>0?custo/denC:0;
+  const lucroAtual=(+preco||0)*(1-imp)-custo,margemAtual=preco>0?lucroAtual/preco:0;
+  const lucroPix=pix>0?pix*(1-imp)-custo:null,lucroCart=cartao>0?cartao*(1-imp-tx)-custo:null;
+  return {mat,custo,sug,sugC,lucroSug:sug*(1-imp)-custo,lucroAtual,margemAtual,lucroPix,lucroCart};
+}
+function openProd(m,dup){
+  let p=m?fromModel(m,ALLP.indexOf(m)):{id:'',name:'',modelo:'',type:'lancha',price:'',cap:'',fits:'',peso:'',medidas:'',dim:{},maxFt:19,rodado:'simples',aro:'Aro 14',badge:'',freio:false,precos:{},custos:null,ativo:true,ordem:ALLP.length};
+  let fotos=m?(m.fotos||[]).slice():[];
+  if(dup){p.id='';p.name+=' (cópia)';p.ordem=ALLP.length;}
+  const novo=!p.id;if(!p.id)p.id='p'+Date.now().toString(36);
+  p.dim=p.dim||{};p.precos=p.precos||{};p.custos=p.custos||{itens:[],mao:'',frete:'',outros:'',imp:6,taxa:4,margem:25};
+  const b=$('#lbox');b.classList.add('wide');let fotosMud=dup&&fotos.length>0;
+  const v=x=>x==null?'':esc(x);
+  b.innerHTML=`<div class="lh"><b>${novo?'Novo produto':'Editar produto'}</b><button class="ib" data-lx>✕</button></div>
+  <form id="pf" autocomplete="off">
+   <div class="ptabs"><button type="button" class="on" data-pt="dados">Dados</button><button type="button" data-pt="fotos">Fotos</button><button type="button" data-pt="precos">Preços</button><button type="button" data-pt="calc">Calculadora</button></div>
+   <section data-ps="dados" class="fgrid2">
+    <div class="fld" style="grid-column:1/-1"><label>Nome *</label><input name="name" value="${v(p.name)}" placeholder="Ex.: BM 19"></div>
+    <div class="fld"><label>Modelo / código</label><input name="modelo" value="${v(p.modelo)}" placeholder="Ex.: X340"></div>
+    <div class="fld"><label>Tipo de embarcação</label><select name="type"><option value="lancha" ${p.type==='lancha'?'selected':''}>Lancha / bote</option><option value="jet" ${p.type==='jet'?'selected':''}>Jet ski</option><option value="jet2" ${p.type==='jet2'?'selected':''}>2 jet skis</option></select></div>
+    <div class="fld"><label>Indicado para</label><input name="fits" value="${v(p.fits)}" placeholder="Ex.: Lanchas até 19 pés"></div>
+    <div class="fld"><label>Barco de até (pés)</label><input name="maxFt" type="number" min="6" max="40" value="${v(p.maxFt)}"></div>
+    <div class="fld"><label>Peso da carreta</label><input name="peso" value="${v(p.peso)}" placeholder="Ex.: 280 kg"></div>
+    <div class="fld"><label>Capacidade de carga</label><input name="cap" value="${v(p.cap)}" placeholder="Ex.: 1.300 kg"></div>
+    <div class="fld"><label>Comprimento (m)</label><input name="dC" type="number" step="0.01" min="0" value="${v(p.dim.c)}"></div>
+    <div class="fld"><label>Largura (m)</label><input name="dL" type="number" step="0.01" min="0" value="${v(p.dim.l)}"></div>
+    <div class="fld"><label>Altura (m)</label><input name="dA" type="number" step="0.01" min="0" value="${v(p.dim.a)}"></div>
+    <div class="fld"><label>Medidas (texto livre)</label><input name="medidas" value="${v(p.medidas)}" placeholder="Preenchido pelas medidas acima"></div>
+    <div class="fld"><label>Rodado</label><select name="rodado"><option value="simples" ${p.rodado!=='duplo'?'selected':''}>Simples (2 pneus)</option><option value="duplo" ${p.rodado==='duplo'?'selected':''}>Duplo (4 pneus)</option></select></div>
+    <div class="fld"><label>Aro</label><input name="aro" value="${v(p.aro)}" placeholder="Ex.: Aro 14"></div>
+    <div class="fld"><label>Selo no card</label><input name="badge" value="${v(p.badge)}" placeholder="Ex.: Mais vendida"></div>
+    <div class="fld"><label>Freio inercial incluso</label><select name="freio"><option value="0">Não</option><option value="1" ${p.freio?'selected':''}>Sim</option></select></div>
+    <div class="fld"><label>Aparece no site</label><select name="ativo"><option value="1">Sim, visível</option><option value="0" ${p.ativo===false?'selected':''}>Não, oculto</option></select></div>
+   </section>
+   <section data-ps="fotos" hidden><div class="fgrid" id="pfg" style="padding:16px"></div><p class="mut" style="padding:0 16px 16px;font-size:.8rem">A primeira foto é a capa do card. Sem foto, o site mostra a imagem 3D.</p></section>
+   <section data-ps="precos" class="fgrid2" hidden>
+    <div class="fld"><label>Preço à vista (R$) *</label><input name="price" type="number" min="0" step="10" value="${v(p.price)}"></div>
+    <div class="fld"><label>Pix (R$)</label><input name="pix" type="number" min="0" step="10" value="${v(p.precos.pix)}" placeholder="Automático: −${Math.round(CONFIG.pixDesconto*100)}%"></div>
+    <div class="fld"><label>Cartão · valor total (R$)</label><input name="cartao" type="number" min="0" step="10" value="${v(p.precos.cartao)}" placeholder="Igual ao à vista"></div>
+    <div class="fld"><label>Cartão · nº de parcelas</label><input name="parcelas" type="number" min="1" max="24" value="${v(p.precos.parcelas)}" placeholder="${CONFIG.parcelasCartao}"></div>
+    <div class="fld"><label>Boleto / financiamento (R$)</label><input name="boleto" type="number" min="0" step="10" value="${v(p.precos.boleto)}" placeholder="Opcional"></div>
+    <div class="fld"><label>Entrada mínima (%)</label><input name="entrada" type="number" min="0" max="100" value="${v(p.precos.entrada)}" placeholder="Opcional"></div>
+    <div class="fld" style="grid-column:1/-1"><label>Observação de pagamento</label><input name="obsPag" value="${v(p.precos.obs)}" placeholder="Ex.: Aceitamos troca"></div>
+    <div class="pprev" id="pprev" style="grid-column:1/-1"></div>
+   </section>
+   <section data-ps="calc" hidden>
+    <div class="calc">
+     <h4>Matéria-prima e peças</h4>
+     <div class="ctbl"><div class="ch2"><span>Item</span><span>Qtd</span><span>Custo unit. (R$)</span><span>Subtotal</span><span></span></div><div id="crows"></div></div>
+     <div class="csug">${MAT_SUG.map(s=>`<button type="button" class="b sm" data-ms="${s}">+ ${s}</button>`).join('')}<button type="button" class="b sm" data-ms="">+ Outro item</button></div>
+     <div class="fgrid2" style="padding:12px 0 0">
+      <div class="fld"><label>Mão de obra (R$)</label><input name="cMao" type="number" min="0" step="10" value="${v(p.custos.mao)}"></div>
+      <div class="fld"><label>Frete / entrega (R$)</label><input name="cFrete" type="number" min="0" step="10" value="${v(p.custos.frete)}"></div>
+      <div class="fld"><label>Outros custos (R$)</label><input name="cOutros" type="number" min="0" step="10" value="${v(p.custos.outros)}"></div>
+      <div class="fld"><label>Impostos sobre a venda (%)</label><input name="cImp" type="number" min="0" max="60" step="0.5" value="${v(p.custos.imp)}"></div>
+      <div class="fld"><label>Taxa da maquininha (%)</label><input name="cTaxa" type="number" min="0" max="30" step="0.1" value="${v(p.custos.taxa)}"></div>
+      <div class="fld"><label>Retorno desejado (% de lucro)</label><input name="cMarg" type="number" min="0" max="90" step="1" value="${v(p.custos.margem)}"></div>
+     </div>
+     <div class="cres" id="cres"></div>
+    </div>
+   </section>
+   <div class="lf">${novo?'':`<button type="button" class="b dn" id="pDel">${ic('trash')}Excluir</button>`}<span style="flex:1"></span><button type="button" class="b" data-lx>Cancelar</button><button class="b pri">Salvar produto</button></div>
+  </form>`;
+  const f=$('#pf');
+  // abas
+  $$('#pf [data-pt]').forEach(t=>t.onclick=()=>{$$('#pf [data-pt]').forEach(x=>x.classList.toggle('on',x===t));$$('#pf [data-ps]').forEach(s=>s.hidden=s.dataset.ps!==t.dataset.pt);});
+  // medidas automáticas
+  const fmt=n=>String(n).replace('.',',');
+  ['dC','dL','dA'].forEach(n=>f[n].oninput=()=>{const c=f.dC.value,l=f.dL.value,a=f.dA.value;const parts=[c,l,a].filter(Boolean);if(parts.length)f.medidas.value=parts.map(fmt).join(' x ')+' m';});
+  // fotos
+  const drawF=()=>{$('#pfg').innerHTML=fotos.map((u,i)=>`<div class="fi"><img src="${u}" alt=""><div class="fa"><button type="button" data-fl2="${i}">◀</button><button type="button" data-fd2="${i}">✕</button><button type="button" data-fr2="${i}">▶</button></div>${i===0?'<span class="cap">Capa</span>':''}</div>`).join('')+`<label class="fi add"><input type="file" accept="image/*" multiple id="pfu" hidden><span>＋<br>Adicionar fotos</span></label>`;
+    $$('#pfg [data-fd2]').forEach(x=>x.onclick=()=>{fotos.splice(+x.dataset.fd2,1);fotosMud=true;drawF();});
+    $$('#pfg [data-fl2]').forEach(x=>x.onclick=()=>{const i=+x.dataset.fl2;if(i>0){[fotos[i-1],fotos[i]]=[fotos[i],fotos[i-1]];fotosMud=true;drawF();}});
+    $$('#pfg [data-fr2]').forEach(x=>x.onclick=()=>{const i=+x.dataset.fr2;if(i<fotos.length-1){[fotos[i+1],fotos[i]]=[fotos[i],fotos[i+1]];fotosMud=true;drawF();}});
+    $('#pfu').onchange=async e=>{const fb=Backend.mode==='firebase';for(const file of [...e.target.files]){try{fotos.push(await resizeImg(file,fb?1100:1400,fb?.72:.8));fotosMud=true;}catch(err){toast('Não consegui ler '+file.name);}}drawF();};};
+  drawF();
+  // calculadora
+  let itens=(p.custos.itens||[]).map(i=>Object.assign({},i));
+  const drawRows=()=>{$('#crows').innerHTML=itens.length?itens.map((it,i)=>`<div class="cr"><input data-ci="${i}" data-k="nome" value="${esc(it.nome||'')}" placeholder="Item"><input data-ci="${i}" data-k="qtd" type="number" min="0" step="0.01" value="${esc(it.qtd??1)}"><input data-ci="${i}" data-k="valor" type="number" min="0" step="0.01" value="${esc(it.valor??'')}" placeholder="0,00"><span class="cs">${BR((+it.qtd||0)*(+it.valor||0))}</span><button type="button" class="ib" data-cx="${i}">${ic('trash')}</button></div>`).join(''):'<div class="pempty" style="padding:16px">Adicione os materiais usados nesta carreta.</div>';
+    $$('#crows [data-ci]').forEach(inp=>inp.oninput=()=>{const it=itens[+inp.dataset.ci];it[inp.dataset.k]=inp.dataset.k==='nome'?inp.value:inp.value;inp.closest('.cr').querySelector('.cs').textContent=BR((+it.qtd||0)*(+it.valor||0));recalc();});
+    $$('#crows [data-cx]').forEach(x=>x.onclick=()=>{itens.splice(+x.dataset.cx,1);drawRows();recalc();});};
+  $$('#pf [data-ms]').forEach(x=>x.onclick=()=>{itens.push({nome:x.dataset.ms,qtd:1,valor:''});drawRows();recalc();const ins=$$('#crows input[data-k=valor]');if(ins.length)ins[ins.length-1].focus();});
+  const custos=()=>({itens:itens.filter(i=>i.nome||+i.valor),mao:f.cMao.value,frete:f.cFrete.value,outros:f.cOutros.value,imp:f.cImp.value,taxa:f.cTaxa.value,margem:f.cMarg.value});
+  const pct=x=>(x*100).toFixed(1).replace('.',',')+'%';
+  function recalc(){
+    const preco=+f.price.value||0,pix=+f.pix.value||preco*(1-CONFIG.pixDesconto),cart=+f.cartao.value||preco;
+    const c=calcProd(custos(),preco,pix,cart);
+    $('#cres').innerHTML=`<div class="crk"><div><span>Materiais</span><b>${BR(c.mat)}</b></div><div><span>Custo total</span><b>${BR(c.custo)}</b></div>
+      <div class="hl"><span>Preço mínimo para ${f.cMarg.value||0}% de retorno</span><b>${c.sug?BR(c.sug):'—'}</b><small>lucro de ${c.sug?BR(c.lucroSug):'—'}</small></div>
+      <div><span>No cartão (com taxa)</span><b>${c.sugC?BR(c.sugC):'—'}</b></div></div>
+     <div class="cbt"><button type="button" class="b pri" id="useV" ${c.sug?'':'disabled'}>Usar ${c.sug?BR(Math.ceil(c.sug/10)*10):''} como preço à vista</button><button type="button" class="b" id="useC" ${c.sugC?'':'disabled'}>Usar ${c.sugC?BR(Math.ceil(c.sugC/10)*10):''} no cartão</button></div>
+     ${preco>0&&c.custo>0?`<div class="cnow"><b>Com os preços atuais:</b>
+       <span>À vista ${BR(preco)} → lucro <b class="${c.lucroAtual>=0?'pos':'neg'}">${BR(c.lucroAtual)} (${pct(c.margemAtual)})</b></span>
+       <span>Pix ${BR(pix)} → lucro <b class="${c.lucroPix>=0?'pos':'neg'}">${BR(c.lucroPix)} (${pct(c.lucroPix/pix)})</b></span>
+       <span>Cartão ${BR(cart)} → lucro <b class="${c.lucroCart>=0?'pos':'neg'}">${BR(c.lucroCart)} (${pct(c.lucroCart/cart)})</b></span></div>`:''}`;
+    if($('#useV'))$('#useV').onclick=()=>{f.price.value=Math.ceil(c.sug/10)*10;recalc();prev();toast('Preço à vista atualizado');};
+    if($('#useC'))$('#useC').onclick=()=>{f.cartao.value=Math.ceil(c.sugC/10)*10;recalc();prev();toast('Preço no cartão atualizado');};
+  }
+  function prev(){const pr=+f.price.value||0,pix=+f.pix.value||pr*(1-CONFIG.pixDesconto),ct=+f.cartao.value||pr,n=+f.parcelas.value||CONFIG.parcelasCartao;
+    $('#pprev').innerHTML=pr?`<b>Como aparece no site:</b> ${BR(pr)} à vista · Pix ${BR(pix)} · ${n}x de ${BR(ct/n)}${ct>pr?'':' sem juros'}${+f.boleto.value?' · Boleto '+BR(+f.boleto.value):''}`:'';}
+  ['cMao','cFrete','cOutros','cImp','cTaxa','cMarg'].forEach(n=>f[n].oninput=recalc);
+  ['price','pix','cartao','parcelas','boleto'].forEach(n=>f[n].oninput=()=>{prev();recalc();});
+  drawRows();recalc();prev();
+  // fechar / excluir / salvar
+  $$('#lbox [data-lx]').forEach(x=>x.onclick=()=>{$('#lmod').classList.remove('on');b.classList.remove('wide');});
+  if($('#pDel'))$('#pDel').onclick=async e=>{const t=e.currentTarget;if(!t.dataset.c){t.dataset.c=1;t.textContent='Confirmar exclusão';return;}
+    try{await Backend.saveProduto({id:p.id,removido:true});const i=PRODS.findIndex(x=>x.id===p.id);if(i>=0)PRODS[i]={id:p.id,removido:true};else PRODS.push({id:p.id,removido:true});
+      applyProdutos(PRODS);$('#lmod').classList.remove('on');b.classList.remove('wide');toast('Produto excluído');renderView();}catch(err){toast('Sem permissão');}};
+  f.onsubmit=async e=>{e.preventDefault();
+    if(!f.name.value.trim()){toast('Informe o nome');$('#pf [data-pt=dados]').click();return;}
+    if(!(+f.price.value>0)){toast('Informe o preço à vista');$('#pf [data-pt=precos]').click();return;}
+    const o={id:p.id,name:f.name.value.trim(),modelo:f.modelo.value.trim(),type:f.type.value,fits:f.fits.value.trim(),maxFt:+f.maxFt.value||19,peso:f.peso.value.trim(),cap:f.cap.value.trim(),
+      dim:{c:f.dC.value,l:f.dL.value,a:f.dA.value},medidas:f.medidas.value.trim(),rodado:f.rodado.value,aro:f.aro.value.trim(),badge:f.badge.value.trim(),freio:f.freio.value==='1',ativo:f.ativo.value==='1',ordem:p.ordem,
+      price:+f.price.value,precos:{pix:f.pix.value,cartao:f.cartao.value,parcelas:f.parcelas.value,boleto:f.boleto.value,entrada:f.entrada.value,obs:f.obsPag.value.trim()},custos:custos(),atualizado:new Date().toISOString()};
+    const btn=f.querySelector('.b.pri:last-child');btn.disabled=true;btn.textContent='Salvando...';
+    try{
+      await Backend.saveProduto(o);
+      if(fotosMud||novo){await Backend.savePhotos(o.id,fotos);PHOTO_MAP[o.id]=fotos;}
+      const i=PRODS.findIndex(x=>x.id===o.id);if(i>=0)PRODS[i]=o;else PRODS.push(o);
+      applyProdutos(PRODS);$('#lmod').classList.remove('on');b.classList.remove('wide');toast('Produto salvo');renderView();
+    }catch(err){console.error(err);toast(err.message||'Sem permissão para salvar');btn.disabled=false;btn.textContent='Salvar produto';}
+  };
+  $('#lmod').classList.add('on');
+}
+
 function openLanc(l){
   l=Object.assign({tipo:'receita',data:hoje(),status:'pago',forma:'Pix',categoria:'',descricao:'',valor:'',pessoa:'',obs:''},l||{});
   const novo=!l.id,b=$('#lbox');
@@ -2188,7 +2444,7 @@ function openLanc(l){
      try{await Backend.saveLanc(o);const i=P.lanc.findIndex(x=>x.id===o.id);if(i>=0)P.lanc[i]=o;else P.lanc.push(o);
        $('#lmod').classList.remove('on');toast(o.tipo==='receita'?'Receita salva':'Despesa salva');P.mes=o.data.slice(0,7);renderView();}catch(err){console.error(err);toast('Sem permissão para salvar');}};
   };
-  draw();$('#lmod').classList.add('on');
+  $('#lbox').classList.remove('wide');draw();$('#lmod').classList.add('on');
 }
 // compatibilidade
 function renderPainel(){renderView();}
@@ -2200,7 +2456,7 @@ $('#acct').onclick=()=>openAcct();
 $('#mAcct').onclick=e=>{e.preventDefault();$('#mnav').classList.remove('on');openAcct();};
 $('#fAdmin').onclick=e=>{e.preventDefault();openAcct('admin');};
 renderGaleria();
-Backend.init().then(async()=>{applyPrices(await Backend.prices());applyPhotos(await Backend.photos());});
+Backend.init().then(async()=>{applyPrices(await Backend.prices());applyPhotos(await Backend.photos());applyProdutos(await Backend.produtos());});
 
 let lastT=performance.now();
 function loop(t){const dt=Math.min(50,t-lastT);lastT=t;
