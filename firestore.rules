@@ -33,5 +33,8 @@ service cloud.firestore {
     // Preços e fotos: todos leem, só admin altera
     match /config/{id} { allow read: if true; allow write: if isAdmin(); }
     match /fotos/{id}  { allow read: if true; allow write: if isAdmin(); }
+
+    // Financeiro (receitas e despesas): só admin
+    match /lancamentos/{id} { allow read, write: if isAdmin(); }
   }
 }

@@ -13,4 +13,4 @@ Tudo fica no bloco `CONFIG` no início do script do `index.html`:
 - `adminEmails`: admin principal (o mesmo de `isMaster()` em `firestore.rules`). Outros admins são cadastrados no painel, aba Equipe.
 
 ## Painel do administrador
-Ícone de pessoa no topo → aba **Administrador**. Abas: Visão geral, Orçamentos, Fotos, Preços e Equipe (cadastrar pessoas e dar ou tirar o perfil de admin).
+Ícone de pessoa no topo → aba **Administrador**. Menu lateral: Visão geral, Orçamentos, Clientes, Fluxo de caixa, Receitas, Despesas, Produtos e preços, Fotos e Equipe e acessos.
