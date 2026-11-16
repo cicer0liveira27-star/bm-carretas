@@ -759,7 +759,14 @@ const CONFIG = {
   instagram: 'https://www.instagram.com/bmcarretasnauticas',
   // Login real em todos os aparelhos: crie um projeto grátis no Firebase (Authentication e-mail/senha + Firestore)
   // e cole aqui a configuração web. Vazio = modo demonstração (dados salvos só no aparelho).
-  firebase: null,        // ex.: {apiKey:'...', authDomain:'...', projectId:'...', appId:'...'}
+  firebase: {
+    apiKey: 'AIzaSyCpfsTx-yqgUBqREfvFhT9wK7hD9ADxDrM',
+    authDomain: 'bm-carretas.firebaseapp.com',
+    projectId: 'bm-carretas',
+    storageBucket: 'bm-carretas.firebasestorage.app',
+    messagingSenderId: '611075346836',
+    appId: '1:611075346836:web:e3f180de888626411fff81'
+  },
   adminEmails: ['cicerosilvadevtec@gmail.com'],       // admin principal (não pode ser removido). Outros admins: painel → Equipe
   adminDemo: {email:'admin@bmcarretas.com', senha:'bm2026'}, // acesso do painel no modo demonstração (TROCAR)
   formEndpoint: '',      // opcional: URL do Formspree/Make/Zapier para receber os leads (POST JSON)
