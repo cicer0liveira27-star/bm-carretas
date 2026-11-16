@@ -39,5 +39,8 @@ service cloud.firestore {
 
     // Produtos (cadastro, preços e custos): todos leem, só admin altera
     match /produtos/{id} { allow read: if true; allow write: if isAdmin(); }
+
+    // Custos e margens de cada produto: só admin
+    match /custos/{id} { allow read, write: if isAdmin(); }
   }
 }

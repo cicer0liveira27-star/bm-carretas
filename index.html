@@ -1931,11 +1931,14 @@ const Backend={
     const o=LS.get('bm_fotos',{});o[key]=arr;try{localStorage.setItem('bm_fotos',JSON.stringify(o));}catch(e){throw new Error('Memória do aparelho cheia. Remova algumas fotos.');}
   },
   async produtos(){
-    if(this.mode==='firebase'){try{const r=await this.fb.db.collection('produtos').get();return r.docs.map(d=>Object.assign({id:d.id},d.data()));}catch(e){console.error(e);return [];}}
+    if(this.mode==='firebase'){try{const r=await this.fb.db.collection('produtos').get();const list=r.docs.map(d=>Object.assign({id:d.id},d.data()));
+      if(this.user&&this.user.role==='admin'){try{const c=await this.fb.db.collection('custos').get();const cm={};c.docs.forEach(d=>cm[d.id]=d.data().custos);list.forEach(p=>{if(cm[p.id])p.custos=cm[p.id];});}catch(e){}}
+      return list;}catch(e){console.error(e);return [];}}
     return LS.get('bm_prod',[]);
   },
   async saveProduto(p){
-    if(this.mode==='firebase'){await this.fb.db.collection('produtos').doc(p.id).set(p);return;}
+    if(this.mode==='firebase'){const pub=Object.assign({},p);delete pub.custos;await this.fb.db.collection('produtos').doc(p.id).set(pub);
+      if(p.custos)await this.fb.db.collection('custos').doc(p.id).set({custos:p.custos});return;}
     const a=LS.get('bm_prod',[]);const i=a.findIndex(x=>x.id===p.id);if(i>=0)a[i]=p;else a.push(p);LS.set('bm_prod',a);
   },
   async lancs(){
@@ -1968,6 +1971,7 @@ service cloud.firestore { match /databases/{db}/documents {
   match /fotos/{id}  { allow read: if true; allow write: if admin(); }
   match /lancamentos/{id} { allow read, write: if admin(); }
   match /produtos/{id} { allow read: if true; allow write: if admin(); }
+  match /custos/{id} { allow read, write: if admin(); }
 }}
 */
 
@@ -2061,6 +2065,7 @@ async function openPainel(){
 async function loadPainel(){
   try{P.leads=await Backend.leads();}catch(e){console.error(e);P.leads=[];}
   if(Backend.user.role==='admin'){try{P.lanc=await Backend.lancs();}catch(e){console.error(e);P.lanc=[];}}
+  if(Backend.user.role==='admin'&&Backend.mode==='firebase'){try{applyProdutos(await Backend.produtos());}catch(e){}}
 }
 function renderShell(){
   const u=Backend.user,nav=u.role==='admin'?NAV_ADMIN:NAV_CLI,logo=$('footer img').src;
